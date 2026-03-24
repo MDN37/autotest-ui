@@ -1,10 +1,21 @@
 <html lang="En">
 <head>
+    <meta charset="UTF-8">
     <title>NAME</title>
+    <style>
+        h2 {
+            font-size: 15px
+        }
+        .h2-text {
+            color: red
+        }
+    </style>
 </head>
 <body>
 <div>
-    <h1>H1 Text</h1>
+    <h1 id="h1-text">H1 Text</h1>
+    <h2 class="h2-text">H2 Text</h2>
+    <h6 class="h2-text">H6 Text</h6>
     <p>base page text</p>
     <a href="https://example.com" target="_blank">Перейти на сайт</a>
 
@@ -19,15 +30,15 @@
         <li>t t</li>
     </ol>
     <input type="text" placeholder="name button">
-    <textarea type="text" placeholder="name button"> </textarea>
+    <textarea type="text" > </textarea>
 
     <button type="submit">Send</button>
 
-    <form action="/submit" method="POST">
+    <form action="submit" method="POST">
         <input required type="text" name="username">
-        <input type="email" name="email">
+        <input type="email" name="email" value="valax2010">
         <input type="password" name="password">
-        <button type="submit">Send</button>
+        <button type="submit"  disabled>Send2</button>
     </form>
     <table>
         <thead></thead>
