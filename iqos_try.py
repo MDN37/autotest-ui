@@ -4,7 +4,8 @@ import local_settings as settings
 
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=False)
-    page = browser.new_page()
+    context = browser.new_context()
+    page = context.new_page()
 
     page.goto("https://iqos-alb.test.cleverbots.ru/admin/login/?next=/admin/")
 
@@ -17,8 +18,14 @@ with sync_playwright() as playwright:
     login_button = page.locator('//input[@value="Log in"]')
     login_button.click()
 
-    user_button = page.locator('//div[@class="app-auth module"]//a[@href="/admin/auth/user/" and text()="Users"]')
-    user_button.click()
+    context.storage_state(path='browser-iqos.json')
+
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context(storage_state='browser-iqos.json')
+    page = context.new_page()
+
+    page.goto("https://iqos-alb.test.cleverbots.ru/admin/auth/user/")
 
     add_button = page.locator('//div[@id="content-main"]//a[@class="addlink"]')
     add_button.click()
@@ -53,6 +60,5 @@ with sync_playwright() as playwright:
     expect(wrong_alert).to_have_text(
         'The user “Auto_test” was deleted successfully.'
     )
-
 
     page.wait_for_timeout(3000)
