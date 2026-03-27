@@ -6,14 +6,19 @@ with sync_playwright() as playwright:
     page = browser.new_page()
 
     page.goto(
-        "https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login",
-        wait_until='networkidle'
-              )
+        (
+            "https://nikita-filonov.github.io/"
+            "qa-automation-engineer-ui-course/#/auth/login"
+        ),
+        wait_until='networkidle',
+    )
 
     text = 'New Text'
     page.evaluate(
         f"""
-        const title = document.getElementById('authentication-ui-course-title-text')
+        const title = document.getElementById(
+            'authentication-ui-course-title-text'
+        )
         title.textContent = '{text}'
         """
     )
