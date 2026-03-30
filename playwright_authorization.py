@@ -20,8 +20,6 @@ with sync_playwright() as playwright:
         'login-form-password-input').locator('input')
     password_input.fill('password')
 
-    page.wait_for_timeout(1000)
-
     login_button = page.get_by_test_id('login-page-login-button')
     login_button.click()
 
@@ -32,4 +30,4 @@ with sync_playwright() as playwright:
         'Wrong email or password'
     )
 
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(5000)
