@@ -48,7 +48,7 @@ def test_authorization():
 
         page.goto("https://iqos-alb.test.cleverbots.ru/admin/auth/user/")
 
-        page.wait_for_timeout(5000)
+        #page.wait_for_timeout(5000)
 
         user_button = page.locator('//a[text()="Auto_test"]')
         user_button.click()
@@ -65,4 +65,4 @@ def test_authorization():
             'The user “Auto_test” was deleted successfully.'
         )
 
-        page.wait_for_timeout(3000)
+        #page.wait_for_timeout(3000)
