@@ -2,8 +2,6 @@ from playwright.sync_api import sync_playwright, expect
 import pytest
 import local_settings as settings
 
-@pytest.mark.regression
-@pytest.mark.authorization
 @pytest.mark.admin
 def test_authorization():
     with sync_playwright() as playwright:

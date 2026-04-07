@@ -1,5 +1,3 @@
-
-
 from components.authentication.login_form_component import (
     LoginFormComponent)
 from elements.button import Button
