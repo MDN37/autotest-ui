@@ -21,6 +21,6 @@ def test_feature():
     create_course(title = "Locust")
     create_course(title = "Pytest")
     create_course(title = "Python")
-    create_course(title = "Playwright")
+    create_course(title = "playwright")
 
     close_browser()

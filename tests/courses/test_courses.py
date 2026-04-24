@@ -54,9 +54,9 @@ class TestCourses:
         create_course_page.image_upload_widget.check_visible(
             is_image_uploaded=True)
         create_course_page.create_course_form.fill(
-            title="Playwright",
+            title="playwright",
             estimated_time="2 weeks",
-            description="Playwright",
+            description="playwright",
             max_score="100",
             min_score="10")
         create_course_page.create_course_toolbar_view.\
@@ -64,7 +64,7 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.course_view.check_visible(
             index=0,
-            title="Playwright",
+            title="playwright",
             max_score="100",
             min_score="10",
             estimated_time="2 weeks")
