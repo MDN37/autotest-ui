@@ -67,6 +67,7 @@ class TestAuthorization:
     @allure.title("User login with wrong email or password")
     @allure.tag(AllureTag.USER_LOGIN)
     @allure.severity(Severity.CRITICAL)
+    @pytest.mark.xdist_group(name="authorization-group")
     def test_wrong_email_or_password_authorization(self,
             login_page: LoginPage, email: str, password: str):
         # allure.dynamic.title(f"Attempt to login with email: {email}")
