@@ -1,3 +1,22 @@
+# local setting for my project
 local_settings.py
 browser-iqos.json
 browser-state.json
+.playwright-mcp
+.cursor
+# pycharm
+.idea
+
+# python
+.venv
+__pycache__
+
+# allure
+allure-results
+allure-report
+
+# testing artifacts
+*.html
+*.json
+videos
+tracing
