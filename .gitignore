@@ -20,3 +20,5 @@ allure-report
 *.json
 videos
 tracing
+
+#.env
