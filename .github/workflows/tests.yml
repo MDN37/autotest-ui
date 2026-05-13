@@ -55,12 +55,15 @@ jobs:
           allure_results: allure-results  # Указываем каталог с результатами тестов
           allure_history: allure-history  # Указываем каталог для истории отчётов Allure
 
-      - name: Strip .git from Allure publish directory
+      # allure-report-action может оставить .git под root из контейнера — chmod/rm от runner не срабатывают.
+      # Копируем только артефакты без .git в отдельную папку для peaceiris (иначе копирование .git ломает ветку gh-pages).
+      - name: Prepare Allure publish directory (no nested .git)
         if: always()
         run: |
-          if [ -d allure-history/.git ]; then
-            chmod -R u+w allure-history/.git
-            rm -rf allure-history/.git
+          rm -rf allure-publish
+          mkdir -p allure-publish
+          if [ -d allure-history ]; then
+            rsync -a --exclude='.git' allure-history/ allure-publish/
           fi
 
       # 7. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
@@ -70,4 +73,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Токен для аутентификации на GitHub
           publish_branch: gh-pages  # Указываем, что отчёт будет опубликован в ветке gh-pages
-          publish_dir: allure-history  # Указываем папку, которая будет опубликована на GitHub Pages
+          publish_dir: allure-publish  # чистая копия без вложенного .git (см. шаг выше)
