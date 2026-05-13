@@ -9,7 +9,7 @@ def test_authorization():
         context = browser.new_context()
         page = context.new_page()
 
-        page.goto("https://iqos-alb.test.cleverbots.ru/admin/login/?next=/admin/")
+        page.goto("https://iqosmeetingbot-test.cleverbots.ru/admin/login/?next=/admin/")
 
         login = page.locator('//input[@id="id_username"]')
         login.fill(settings.USER)
@@ -27,7 +27,7 @@ def test_authorization():
         context = browser.new_context(storage_state='browser-iqos.json')
         page = context.new_page()
 
-        page.goto("https://iqos-alb.test.cleverbots.ru/admin/auth/user/")
+        page.goto("https://iqosmeetingbot-test.cleverbots.ru/admin/login/?next=/admin/")
 
         add_button = page.locator('//div[@id="content-main"]//a[@class="addlink"]')
         add_button.click()
@@ -44,7 +44,7 @@ def test_authorization():
         save_button = page.locator('//input[@class="default" and @value="Save"]')
         save_button.click()
 
-        page.goto("https://iqos-alb.test.cleverbots.ru/admin/auth/user/")
+        page.goto("https://iqosmeetingbot-test.cleverbots.ru/admin/auth/user/")
 
         #page.wait_for_timeout(5000)
 
