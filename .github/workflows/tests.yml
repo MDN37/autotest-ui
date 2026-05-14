@@ -36,8 +36,7 @@ jobs:
       # 4. Шаг для запуска тестов с использованием pytest и генерации отчётов Allure
       - name: Run Playwright tests with pytest and generate Allure results
         run: |
-        # Запускаем тесты, отмеченные как "regression", генерируем результаты для Allure
-          pytest -m regression --alluredir=allure-results --numprocesses 2
+          pytest -m regression --alluredir=allure-results --numprocesses 2  # Запускаем тесты, отмеченные как "regression", генерируем результаты для Allure
 
       # 5. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
@@ -50,8 +49,7 @@ jobs:
 
       # 6. Шаг для генерации и отображения отчёта Allure
       - name: Generates Allure Report with history
-        # Используем готовое решение из GitHub Marketplace для генерации Allure отчёта
-        uses: simple-elf/allure-report-action@v1.13
+        uses: simple-elf/allure-report-action@v1.13  # Используем готовое решение из GitHub Marketplace для генерации Allure отчёта
         if: always()  # Этот шаг тоже всегда выполняется
         with:
           allure_results: allure-results  # Указываем каталог с результатами тестов
@@ -59,7 +57,7 @@ jobs:
 
       # 6. Шаг 6.1 доп шаг из-за проблем с удалением .git из allure-history
       #allure-report-action может оставить .git под root из контейнера — chmod/rm от runner не срабатывают.
-      #Копируем только артефакты без .git в отдельную папку для peaceiris (иначе копирование .git ломает ветку gh-pages)
+      # Копируем только артефакты без .git в отдельную папку для peaceiris (иначе копирование .git ломает ветку gh-pages).
       - name: Prepare Allure publish directory (no nested .git)
         if: always()
         run: |
