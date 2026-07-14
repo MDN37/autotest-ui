@@ -38,6 +38,36 @@ jobs:
         run: |
           pytest -m regression --alluredir=allure-results --numprocesses 2  # Запускаем тесты, отмеченные как "regression", генерируем результаты для Allure
 
+      # Восстанавливаем историю покрытия из кеша
+      - name: Restore Coverage history
+        uses: actions/cache/restore@v6
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+          restore-keys: |
+            coverage-history-
+
+      # Генерируем HTML-отчет и обновляем историю
+      - name: Generate Coverage report
+        run: |
+          ui-coverage-tool save-report
+
+      # Сохраняем историю обратно в кеш
+      - name: Cache Coverage history
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+
+      # Загружаем HTML-отчет как артефакт
+      - name: Upload Coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: coverage.html
+
       - name: Upload Allure results
         uses: actions/upload-artifact@v7
         with:
@@ -78,7 +108,7 @@ jobs:
           allure_history: allure-history  # Указываем каталог для истории отчётов Allure
 
       # Доп шаг из-за проблем с удалением .git из allure-history
-      #allure-report-action может оставить .git под root из контейнера — chmod/rm от runner не срабатывают.
+      #allure-report-action может оставить .git под root из контейнера — chmod/rm от runner не срабатывают :(
       # Копируем только артефакты без .git в отдельную папку для peaceiris (иначе копирование .git ломает ветку gh-pages).
       - name: Prepare Allure publish directory (no nested .git)
         if: always()

@@ -17,12 +17,20 @@ __pycache__
 # allure
 allure-results
 allure-report
+chromium-webkit
+chromium-webkit-firefox
 
 # testing artifacts
 *.html
 *.json
 videos
 tracing
+
+# coverage
+coverage.html
+coverage-results
+coverage-report.json
+coverage-history.json
 
 #.env
 
