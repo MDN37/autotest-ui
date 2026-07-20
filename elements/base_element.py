@@ -31,7 +31,7 @@ class BaseElement:
             selector=self.get_raw_locator(nth, **kwargs),
             action_type=action_type,
             selector_type=SelectorType.XPATH
-        )
+        ) 
 
     def click(self, nth: int = 0, **kwargs):
         step = f'Clicking {self.type_of} "{self.name}"'
