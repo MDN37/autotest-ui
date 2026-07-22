@@ -1,12 +1,12 @@
 llm:
-  provider: GEMINI
+  provider: OPENROUTER
   meta:
     model: google/gemini-2.5-flash
     max_tokens: 1200
     temperature: 0.3
   http_client:
     timeout: 120
-    api_url: https://openrouter.ai/api/v1/chat/completions
+    api_url: https://openrouter.ai/api/v1
 
 vcs:
   provider: GITHUB
