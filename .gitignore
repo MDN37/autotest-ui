@@ -4,8 +4,7 @@ browser-iqos.json
 browser-state.json
 .playwright-mcp
 .cursor
-iqos_try.py
-/tests/Other/
+artifacts
 
 # pycharm
 .idea
